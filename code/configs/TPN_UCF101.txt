@@ -1,0 +1,113 @@
+[MODEL]
+name = "TPN_PADDLE"
+format = "pkl"
+num_classes = 100
+seg_num = 32
+seglen = 1
+step = 2
+image_mean = [0.485, 0.456, 0.406]
+image_std = [0.229, 0.224, 0.225]
+model_details = 'BACKBONE, NECK, CLS_HEAD'
+
+[BACKBONE]
+depth = 50
+pretrained = 'pretrain_model/backbone'
+pretrained2d = True
+num_stages = 4
+spatial_strides = (1, 2, 2, 2)
+temporal_strides = (1, 1, 1, 1)
+dilations = (1, 1, 1, 1)
+out_indices = [2, 3]
+conv1_kernel_t = 1
+conv1_stride_t = 1
+pool1_kernel_t = 1
+pool1_stride_t = 1
+style = 'pytorch'
+frozen_stages = -1
+inflate_freq = (0, 0, 1, 1)
+inflate_stride = (1, 1, 1, 1)
+inflate_style = '3x1x1'
+nonlocal_stages = (-1, )
+nonlocal_freq = (0, 1, 1, 0)
+nonlocal_cfg = None
+bn_eval = False
+bn_frozen = False
+partial_bn = False
+with_cp = False
+
+[NECK]
+in_channels=[1024, 2048]
+out_channels=1024
+spatial_modulation_config=dict(inplanes=[1024, 2048],planes=2048,)
+temporal_modulation_config=dict(scales=(32, 32),param=dict(inplanes=-1,planes=-1,downsample_scale=-1,))
+upsampling_config=dict(scale=(1),)
+downsampling_config=dict(scales=(1),param=dict(inplanes=-1,planes=-1,downsample_scale=-1,))
+level_fusion_config=dict(in_channels=[1024, 1024],mid_channels=[1024, 1024],out_channels=2048,ds_scales=[(1, 1, 1), (1, 1, 1)],)
+aux_head_config=dict(inplanes=-1,planes=101,loss_weight=0.5)
+
+[STMODULE]
+spatial_type='avg'
+temporal_size=1
+spatial_size=7
+
+[SEGMENTALCONSENSUS]
+consensus_type='avg'
+
+[CLSHEAD]
+with_avg_pool=False
+temporal_feature_size=1
+spatial_feature_size=1
+dropout_ratio=0.5
+in_channels=2048
+num_classes=400
+
+[TRAIN]
+epoch = 30
+short_size = 240
+target_size = 224
+num_reader_threads = 4
+buf_size = 1024
+batch_size = 8
+use_gpu = True
+num_gpus = 1
+random_scale = True
+color_jitter = True
+color_space_aug = True
+
+filelist = "./UCF-101-DETAIL/train.list"
+optimizer_type = 'SGD'
+learning_rate = 0.01 #0.001
+step = 973
+learning_rate_decay = 0.1
+learning_rate_decay_epoch = [100, 125]
+l2_weight_decay = 1e-4
+use_nesterov = True
+momentum = 0.9
+total_videos = 80
+visual_step = 100
+
+[VALID]
+short_size = 240
+target_size = 224
+num_reader_threads = 1
+buf_size = 1024
+batch_size = 2
+filelist = "./UCF-101-DETAIL/val.list"
+
+[TEST]
+seg_num = 7
+short_size = 240
+target_size = 224
+num_reader_threads = 1
+buf_size = 1024
+batch_size = 10
+filelist = "./UCF-101-DETAIL/test.list"
+
+[INFER]
+short_size = 240
+target_size = 224
+num_reader_threads = 1
+buf_size = 1024
+batch_size = 1
+filelist = "./UCF-101-DETAIL/test.list"
+

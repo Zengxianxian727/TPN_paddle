@@ -1,0 +1,58 @@
+configs/TPN_kinetics_new.txt
+{'MODEL': {'name': 'TPN_PADDLE', 'format': 'mp4', 'num_classes': 400, 'seg_num': 32, 'seglen': 1, 'step': 2, 'image_mean': [0.485, 0.456, 0.406], 'image_std': [0.229, 0.224, 0.225], 'model_details': 'BACKBONE, NECK, CLS_HEAD'}, 'BACKBONE': {'depth': 50, 'pretrained': 'pretrain_model/backbone', 'pretrained2d': True, 'num_stages': 4, 'spatial_strides': (1, 2, 2, 2), 'temporal_strides': (1, 1, 1, 1), 'dilations': (1, 1, 1, 1), 'out_indices': [2, 3], 'conv1_kernel_t': 1, 'conv1_stride_t': 1, 'pool1_kernel_t': 1, 'pool1_stride_t': 1, 'style': 'pytorch', 'frozen_stages': -1, 'inflate_freq': (0, 0, 1, 1), 'inflate_stride': (1, 1, 1, 1), 'inflate_style': '3x1x1', 'nonlocal_stages': (-1,), 'nonlocal_freq': (0, 1, 1, 0), 'nonlocal_cfg': None, 'bn_eval': False, 'bn_frozen': False, 'partial_bn': False, 'with_cp': False}, 'NECK': {'in_channels': [1024, 2048], 'out_channels': 1024, 'spatial_modulation_config': {'inplanes': [1024, 2048], 'planes': 2048}, 'temporal_modulation_config': {'scales': (32, 32), 'param': {'inplanes': -1, 'planes': -1, 'downsample_scale': -1}}, 'upsampling_config': {'scale': 1}, 'downsampling_config': {'scales': 1, 'param': {'inplanes': -1, 'planes': -1, 'downsample_scale': -1}}, 'level_fusion_config': {'in_channels': [1024, 1024], 'mid_channels': [1024, 1024], 'out_channels': 2048, 'ds_scales': [(1, 1, 1), (1, 1, 1)]}, 'aux_head_config': {'inplanes': -1, 'planes': 400, 'loss_weight': 0.5}}, 'STMODULE': {'spatial_type': 'avg', 'temporal_size': 1, 'spatial_size': 7}, 'SEGMENTALCONSENSUS': {'consensus_type': 'avg'}, 'CLSHEAD': {'with_avg_pool': False, 'temporal_feature_size': 1, 'spatial_feature_size': 1, 'dropout_ratio': 0.5, 'in_channels': 2048, 'num_classes': 400}, 'TRAIN': {'epoch': 30, 'short_size': 256, 'target_size': 224, 'num_reader_threads': 8, 'buf_size': 1024, 'batch_size': 8, 'use_gpu': True, 'num_gpus': 1, 'random_scale': True, 'color_jitter': True, 'color_space_aug': True, 'filelist': '/home/aistudio/data/data50916/k400_tmp/train_list.txt', 'optimizer_type': 'SGD', 'learning_rate': 0.01, 'step': None, 'learning_rate_decay': 0.1, 'learning_rate_decay_epoch': [100, 125], 'l2_weight_decay': 0.0001, 'use_nesterov': True, 'momentum': 0.9, 'total_videos': 80, 'visual_step': 100, 'all_num': 234619}, 'VALID': {'short_size': 256, 'target_size': 224, 'num_reader_threads': 1, 'buf_size': 1024, 'batch_size': 2, 'filelist': '/home/aistudio/data/data50916/k400_tmp/val_list.txt'}, 'TEST': {'seg_num': 7, 'short_size': 256, 'target_size': 224, 'num_reader_threads': 1, 'buf_size': 1024, 'batch_size': 10, 'filelist': '/home/aistudio/data/data50916/k400_tmp/val_list.txt'}, 'INFER': {'short_size': 256, 'target_size': 224, 'num_reader_threads': 1, 'buf_size': 1024, 'batch_size': 1, 'filelist': '/home/aistudio/data/data50916/k400_tmp/val_list.txt'}}
+{'MODEL': {'name': 'TPN_PADDLE', 'format': 'mp4', 'num_classes': 400, 'seg_num': 32, 'seglen': 1, 'step': 2, 'image_mean': [0.485, 0.456, 0.406], 'image_std': [0.229, 0.224, 0.225], 'model_details': 'BACKBONE, NECK, CLS_HEAD'}, 'BACKBONE': {'depth': 50, 'pretrained': 'pretrain_model/backbone', 'pretrained2d': True, 'num_stages': 4, 'spatial_strides': (1, 2, 2, 2), 'temporal_strides': (1, 1, 1, 1), 'dilations': (1, 1, 1, 1), 'out_indices': [2, 3], 'conv1_kernel_t': 1, 'conv1_stride_t': 1, 'pool1_kernel_t': 1, 'pool1_stride_t': 1, 'style': 'pytorch', 'frozen_stages': -1, 'inflate_freq': (0, 0, 1, 1), 'inflate_stride': (1, 1, 1, 1), 'inflate_style': '3x1x1', 'nonlocal_stages': (-1,), 'nonlocal_freq': (0, 1, 1, 0), 'nonlocal_cfg': None, 'bn_eval': False, 'bn_frozen': False, 'partial_bn': False, 'with_cp': False}, 'NECK': {'in_channels': [1024, 2048], 'out_channels': 1024, 'spatial_modulation_config': {'inplanes': [1024, 2048], 'planes': 2048}, 'temporal_modulation_config': {'scales': (32, 32), 'param': {'inplanes': -1, 'planes': -1, 'downsample_scale': -1}}, 'upsampling_config': {'scale': 1}, 'downsampling_config': {'scales': 1, 'param': {'inplanes': -1, 'planes': -1, 'downsample_scale': -1}}, 'level_fusion_config': {'in_channels': [1024, 1024], 'mid_channels': [1024, 1024], 'out_channels': 2048, 'ds_scales': [(1, 1, 1), (1, 1, 1)]}, 'aux_head_config': {'inplanes': -1, 'planes': 400, 'loss_weight': 0.5}}, 'STMODULE': {'spatial_type': 'avg', 'temporal_size': 1, 'spatial_size': 7}, 'SEGMENTALCONSENSUS': {'consensus_type': 'avg'}, 'CLSHEAD': {'with_avg_pool': False, 'temporal_feature_size': 1, 'spatial_feature_size': 1, 'dropout_ratio': 0.5, 'in_channels': 2048, 'num_classes': 400}, 'TRAIN': {'epoch': 30, 'short_size': 256, 'target_size': 224, 'num_reader_threads': 8, 'buf_size': 1024, 'batch_size': 8, 'use_gpu': True, 'num_gpus': 1, 'random_scale': True, 'color_jitter': True, 'color_space_aug': True, 'filelist': '/home/aistudio/data/data50916/k400_tmp/train_list.txt', 'optimizer_type': 'SGD', 'learning_rate': 0.01, 'step': None, 'learning_rate_decay': 0.1, 'learning_rate_decay_epoch': [100, 125], 'l2_weight_decay': 0.0001, 'use_nesterov': True, 'momentum': 0.9, 'total_videos': 80, 'visual_step': 100, 'all_num': 234619}, 'VALID': {'short_size': 256, 'target_size': 224, 'num_reader_threads': 1, 'buf_size': 1024, 'batch_size': 2, 'filelist': '/home/aistudio/data/data50916/k400_tmp/val_list.txt'}, 'TEST': {'seg_num': 7, 'short_size': 256, 'target_size': 224, 'num_reader_threads': 1, 'buf_size': 1024, 'batch_size': 10, 'filelist': '/home/aistudio/data/data50916/k400_tmp/val_list.txt'}, 'INFER': {'short_size': 256, 'target_size': 224, 'num_reader_threads': 1, 'buf_size': 1024, 'batch_size': 1, 'filelist': '/home/aistudio/data/data50916/k400_tmp/val_list.txt'}}
+W0822 12:24:04.260375 11501 device_context.cc:252] Please NOTE: device: 0, CUDA Capability: 70, Driver API Version: 10.1, Runtime API Version: 9.0
+W0822 12:24:04.264621 11501 device_context.cc:260] device: 0, cuDNN Version: 7.3.
+loaded pretrained Backbone
+step for lr decay: 29327
+go to training
+Traceback (most recent call last):
+  File "train_new.py", line 220, in <module>
+    train(args)
+  File "train_new.py", line 163, in train
+    all_loss = train_model.scale_loss(all_loss)
+  File "/opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/parallel.py", line 333, in scale_loss
+    if not self._is_data_parallel_mode():
+  File "/opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/parallel.py", line 457, in _is_data_parallel_mode
+    return self._strategy.nranks > 1
+AttributeError: 'NoneType' object has no attribute 'nranks'
+terminate called without an active exception
+W0822 12:24:11.953088 11533 init.cc:216] Warning: PaddlePaddle catches a failure signal, it may not work properly
+W0822 12:24:11.953119 11533 init.cc:218] You could check whether you killed PaddlePaddle thread/process accidentally or report the case to PaddlePaddle
+W0822 12:24:11.953122 11533 init.cc:221] The detail failure signal is:
+
+W0822 12:24:11.953128 11533 init.cc:224] *** Aborted at 1598070251 (unix time) try "date -d @1598070251" if you are using GNU date ***
+W0822 12:24:11.954954 11533 init.cc:224] PC: @                0x0 (unknown)
+W0822 12:24:11.955169 11533 init.cc:224] *** SIGABRT (@0x3e800002ced) received by PID 11501 (TID 0x7f9327fff700) from PID 11501; stack trace: ***
+W0822 12:24:11.956481 11533 init.cc:224]     @     0x7f941282b390 (unknown)
+W0822 12:24:11.957670 11533 init.cc:224]     @     0x7f9412485428 gsignal
+W0822 12:24:11.958833 11533 init.cc:224]     @     0x7f941248702a abort
+W0822 12:24:11.959969 11533 init.cc:224]     @     0x7f940ca1884a __gnu_cxx::__verbose_terminate_handler()
+W0822 12:24:11.960954 11533 init.cc:224]     @     0x7f940ca16f47 __cxxabiv1::__terminate()
+W0822 12:24:11.962002 11533 init.cc:224]     @     0x7f940ca16f7d std::terminate()
+W0822 12:24:11.963007 11533 init.cc:224]     @     0x7f940ca16c5a __gxx_personality_v0
+W0822 12:24:11.963948 11533 init.cc:224]     @     0x7f940cd49b97 _Unwind_ForcedUnwind_Phase2
+W0822 12:24:11.964918 11533 init.cc:224]     @     0x7f940cd49e7d _Unwind_ForcedUnwind
+W0822 12:24:11.966104 11533 init.cc:224]     @     0x7f941282a070 __GI___pthread_unwind
+W0822 12:24:11.967276 11533 init.cc:224]     @     0x7f9412822845 __pthread_exit
+W0822 12:24:11.967571 11533 init.cc:224]     @     0x55a323f38e59 PyThread_exit_thread
+W0822 12:24:11.967640 11533 init.cc:224]     @     0x55a323dbec17 PyEval_RestoreThread.cold.798
+W0822 12:24:11.968192 11533 init.cc:224]     @     0x7f93fd847cd4 (unknown)
+W0822 12:24:11.968448 11533 init.cc:224]     @     0x55a323eba744 _PyMethodDef_RawFastCallKeywords
+W0822 12:24:11.968659 11533 init.cc:224]     @     0x55a323ec23cf _PyMethodDescr_FastCallKeywords
+W0822 12:24:11.968878 11533 init.cc:224]     @     0x55a323f2607c _PyEval_EvalFrameDefault
+W0822 12:24:11.969063 11533 init.cc:224]     @     0x55a323eb9ccb _PyFunction_FastCallKeywords
+W0822 12:24:11.969274 11533 init.cc:224]     @     0x55a323f21806 _PyEval_EvalFrameDefault
+W0822 12:24:11.969480 11533 init.cc:224]     @     0x55a323e6a81a _PyEval_EvalCodeWithName
+W0822 12:24:11.969678 11533 init.cc:224]     @     0x55a323e6b860 _PyFunction_FastCallDict
+W0822 12:24:11.969810 11533 init.cc:224]     @     0x55a323f79b5b partial_call
+W0822 12:24:11.970007 11533 init.cc:224]     @     0x55a323ec28fb _PyObject_FastCallKeywords
+W0822 12:24:11.970219 11533 init.cc:224]     @     0x55a323f25e86 _PyEval_EvalFrameDefault
+W0822 12:24:11.970424 11533 init.cc:224]     @     0x55a323e6a81a _PyEval_EvalCodeWithName
+W0822 12:24:11.970623 11533 init.cc:224]     @     0x55a323e6b635 _PyFunction_FastCallDict
+W0822 12:24:11.970835 11533 init.cc:224]     @     0x55a323f23232 _PyEval_EvalFrameDefault
+W0822 12:24:11.971035 11533 init.cc:224]     @     0x55a323eb9ccb _PyFunction_FastCallKeywords
+W0822 12:24:11.971251 11533 init.cc:224]     @     0x55a323f21a93 _PyEval_EvalFrameDefault
+W0822 12:24:11.971441 11533 init.cc:224]     @     0x55a323eb9ccb _PyFunction_FastCallKeywords
+W0822 12:24:11.971654 11533 init.cc:224]     @     0x55a323f21a93 _PyEval_EvalFrameDefault
+W0822 12:24:11.971850 11533 init.cc:224]     @     0x55a323e6b56b _PyFunction_FastCallDict
